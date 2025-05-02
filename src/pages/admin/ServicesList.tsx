@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Trash2 } from "lucide-react";
 
 const ServicesList = () => {
-   const {data: services, isLoading, isError} = useGetServices()
+   const {data, isLoading, isError} = useGetServices()
 
    if(isLoading) {
     return <p>Loading...</p>
@@ -30,11 +30,11 @@ const ServicesList = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {services.map((item) => (
+          {data?.map((item) => (
             <TableRow key={item._id}>
               <TableCell className="font-medium">{item.name}</TableCell>
               <TableCell>{}</TableCell>
-              <TableCell>{}</TableCell>
+              <TableCell>${item.price?.toFixed}</TableCell>
               <TableCell className="text-right">
               <Button variant="destructive" className="p-2"><Trash2 /></Button>
               </TableCell>

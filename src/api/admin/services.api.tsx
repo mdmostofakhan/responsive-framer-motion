@@ -15,3 +15,7 @@ import axios from "axios"
 
 //     return res;
 // }
+
+export const addServices = async () => {
+  return await axios.get("../../../public/news.json")
+}

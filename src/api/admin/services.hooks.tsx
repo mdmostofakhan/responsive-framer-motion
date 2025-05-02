@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getServices } from "./services.api";
+import { addServices, getServices } from "./services.api";
 
  export const useGetServices = () => {
   const servicesInfo =   useQuery({
@@ -23,3 +23,22 @@ import { getServices } from "./services.api";
            
     //     </div>
     //   ))
+
+
+   //  add services ......
+
+  export const useAddServices = () => {
+     const addServicesInfo =useQuery({
+         queryKey: ["services"],
+         queryFn: addServices,
+         select: (data) => {
+             return data?.data?.map(item => ({
+                  id: item?.id,
+                  name: item.name,
+                  price: item.price
+             }))
+   
+            }
+         })
+         return addServicesInfo
+   }
